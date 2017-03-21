@@ -52,6 +52,7 @@ function CallMethod() {
     }
 
     //$("#uh").val('');
+    $("#output").empty();
 
     for (var j = 0; j < textarea.length; j++)
     {
