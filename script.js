@@ -1,4 +1,5 @@
 var dictionary;
+var textarea;
 $(document).ready(function(){
 
     jQuery.get('dictionary.txt', function(data) {
@@ -15,29 +16,48 @@ function searchStringInArray (str, strArray) {
 }
 
 function CallMethod() {
+    textarea = $("#uh").val().split("\n");
 
-    var word = "RESOLUTION";
-    var index = searchStringInArray(word, dictionary);
+    for (var i = 0; i < textarea.length; i++) {
+        var word = textarea[i].toUpperCase();
+        //alert(word);
+        var index = searchStringInArray(word, dictionary);
 
-    var entry = "";
-    var startIndex = index;
+        var entry = "";
+        var startIndex = index;
 
-    while (1) // finding startIndex
-    {
-        if (dictionary[startIndex].indexOf("1.") >= 0 || dictionary[startIndex].indexOf("Def") >= 0)
-            break;
+        while (1) // finding startIndex
+        {
+            if (dictionary[startIndex].indexOf("Defn") >= 0)
+                break;
 
-        startIndex++;
+            startIndex++;
+        }
+
+        var tempIndex = startIndex;
+
+        while (1) {
+            if (dictionary[tempIndex] == dictionary[tempIndex].toUpperCase())
+                break;
+
+            entry += dictionary[tempIndex];
+            tempIndex++;
+        }
+
+        //alert(entry);
+
+        textarea[i] += '	' + entry.replace("Defn:", "");
+
+        //alert(entry);
     }
 
-    var tempIndex = startIndex;
+    //$("#uh").val('');
 
-    while (1)
+    for (var j = 0; j < textarea.length; j++)
     {
-        if (dictionary[tempIndex] == dictionary[tempIndex].toUpperCase())
-            break;
+        //$("#uh").val($("#uh").val() + textarea[j]);
+        $("#output").append("<div>" + textarea[j] + "</div>");
+        }
 
-        entry += dictionary[tempIndex];
-        tempIndex++;
-    }
+    alert("Set generated!");
 }
