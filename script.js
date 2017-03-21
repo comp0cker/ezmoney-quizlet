@@ -1,9 +1,13 @@
 var dictionary;
+var dictionary_spanish;
 var textarea;
 $(document).ready(function(){
 
     jQuery.get('dictionary.txt', function(data) {
         dictionary = data.split("\n");
+    });
+    jQuery.get('spanish.txt', function(data) {
+        dictionary_spanish = data.split("\n");
     });
 
 });
@@ -17,6 +21,8 @@ function searchStringInArray (str, strArray) {
 
 function CallMethod() {
     textarea = $("#uh").val().split("\n");
+    var defType = $("input[name='def']:checked").val();
+    var langType = $("input[name='lang']:checked").val();
 
     for (var i = 0; i < textarea.length; i++) {
         var word = textarea[i].toUpperCase();
@@ -39,8 +45,13 @@ function CallMethod() {
             var tempIndex = startIndex;
 
             while (1) {
-                if (dictionary[tempIndex] == dictionary[tempIndex].toUpperCase())
-                    break;
+                //alert(dictionary[tempIndex]);
+                if (dictionary[tempIndex] == dictionary[tempIndex].toUpperCase()) {
+                    if (defType == "all" && dictionary[tempIndex][1])
+                        break;
+                    else if (defType == "first")
+                        break;
+                }
 
                 entry += dictionary[tempIndex];
                 tempIndex++;
@@ -59,7 +70,7 @@ function CallMethod() {
     //$("#uh").val('');
     $("#output").empty();
 
-    for (var j = 0; j < textarea.length; j++)
+    for (var j = 0; j < textarea.length; j++) // outputting results
     {
         //$("#uh").val($("#uh").val() + textarea[j]);
         $("#output").append("<div>" + textarea[j] + "</div>");
