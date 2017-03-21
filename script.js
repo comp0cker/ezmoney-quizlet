@@ -23,30 +23,35 @@ function CallMethod() {
         //alert(word);
         var index = searchStringInArray(word, dictionary);
 
-        var entry = "";
-        var startIndex = index;
+        if (index != -1) {
 
-        while (1) // finding startIndex
-        {
-            if (dictionary[startIndex].indexOf("Defn") >= 0)
-                break;
+            var entry = "";
+            var startIndex = index;
 
-            startIndex++;
+            while (1) // finding startIndex
+            {
+                if (dictionary[startIndex].indexOf("Defn") >= 0)
+                    break;
+
+                startIndex++;
+            }
+
+            var tempIndex = startIndex;
+
+            while (1) {
+                if (dictionary[tempIndex] == dictionary[tempIndex].toUpperCase())
+                    break;
+
+                entry += dictionary[tempIndex];
+                tempIndex++;
+            }
+
+            //alert(entry);
+
+            textarea[i] += '	' + entry.replace("Defn:", "");
         }
-
-        var tempIndex = startIndex;
-
-        while (1) {
-            if (dictionary[tempIndex] == dictionary[tempIndex].toUpperCase())
-                break;
-
-            entry += dictionary[tempIndex];
-            tempIndex++;
-        }
-
-        //alert(entry);
-
-        textarea[i] += '	' + entry.replace("Defn:", "");
+        else
+            textarea[i] += '	no definition found :(';
 
         //alert(entry);
     }
