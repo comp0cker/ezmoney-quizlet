@@ -4,24 +4,35 @@
     <link rel="stylesheet" href="main.css">
     <meta charset="UTF-8">
     <title>Home</title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
     <script src="script.js"></script>
 </head>
 
-<h1>Enter each word on its own line, then create a new Quizlet set, click import, and paste the generated text.</h1>
-<h2>Don't misspell anything :P</h2>
+<div class = "container">
+<h3>Enter each word on its own line, then create a new Quizlet set, click import, and paste the generated text.</h3>
+<h4>Don't misspell anything :P</h4>
 
-English<input type="radio" name="lang" value="eng" checked = "checked">
-English to Spanish<input type="radio" name="lang" value="spa"><br>
+<input type="radio" name="lang" value="eng" id="english" checked = "checked">
+<label for="english">English</label>
+<input type="radio" name="lang" value="spa" id="spanish">
+<label for="spanish">English to Spanish</label>
+<br>
 
-Pick first definition<input type="radio" name="def" value="first" checked = "checked">
-Pick alternate definition<input type="radio" name="def" value="second">
-List all definitions<input type="radio" name="def" value="all"><br>
+<input type="radio" name="def" value="first" id = "firstDef" checked = "checked">
+<label for="firstDef">Pick first definition</label>
+<input type="radio" name="def" value="all" id = "allDef">
+<label for="allDef">List all definitions</label>
 
 <div class = "flexcontainer">
-    <textarea id="uh" placeholder="Enter here!" rows = 30 cols = 30></textarea>
-    <div id = "output"></div>
+    <textarea id="uh" placeholder="Enter here!" class="materialize-textarea"></textarea>
+    <div class="flow-text" id = "output"></div>
 </div>
-<button onclick="CallMethod()">Generate!</button>
+<button class="waves-effect waves-light btn" onclick="CallMethod()">Generate!</button>
+<button class="waves-effect waves-light btn" class="button" id="copy-button" data-clipboard-target="#output">Copy</button>
+</div>
 </body>
 </html>

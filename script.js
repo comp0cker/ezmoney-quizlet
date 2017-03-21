@@ -3,6 +3,8 @@ var dictionary_spanish;
 var textarea;
 $(document).ready(function(){
 
+    new Clipboard('#copy-button');
+
     jQuery.get('dictionary.txt', function(data) {
         dictionary = data.split("\n");
     });
@@ -89,5 +91,5 @@ function CallMethod() {
         $("#output").append("<div>" + textarea[j] + "</div>");
         }
 
-    alert("Set generated!");
+    //alert("Set generated!");
 }
