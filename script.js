@@ -27,42 +27,55 @@ function CallMethod() {
     for (var i = 0; i < textarea.length; i++) {
         var word = textarea[i].toUpperCase();
         //alert(word);
-        var index = searchStringInArray(word, dictionary);
+        if (langType == "eng") {
+            var index = searchStringInArray(word, dictionary);
 
-        if (index != -1) {
+            if (index != -1) {
 
-            var entry = "";
-            var startIndex = index;
+                var entry = "";
+                var startIndex = index;
 
-            while (1) // finding startIndex
-            {
-                if (dictionary[startIndex].indexOf("Defn") >= 0)
-                    break;
-
-                startIndex++;
-            }
-
-            var tempIndex = startIndex;
-
-            while (1) {
-                //alert(dictionary[tempIndex]);
-                if (dictionary[tempIndex] == dictionary[tempIndex].toUpperCase()) {
-                    if (defType == "all" && dictionary[tempIndex][1])
+                while (1) // finding startIndex
+                {
+                    if (dictionary[startIndex].indexOf("Defn") >= 0)
                         break;
-                    else if (defType == "first")
-                        break;
+
+                    startIndex++;
                 }
 
-                entry += dictionary[tempIndex];
-                tempIndex++;
+                var tempIndex = startIndex;
+
+                while (1) {
+                    //alert(dictionary[tempIndex]);
+                    if (dictionary[tempIndex] == dictionary[tempIndex].toUpperCase()) {
+                        if (defType == "all" && dictionary[tempIndex][1])
+                            break;
+                        else if (defType == "first")
+                            break;
+                    }
+
+                    entry += dictionary[tempIndex];
+                    tempIndex++;
+                }
+
+                //alert(entry);
+
+                textarea[i] += '	' + entry.replace("Defn:", "");
             }
-
-            //alert(entry);
-
-            textarea[i] += '	' + entry.replace("Defn:", "");
+            else
+                textarea[i] += '	no definition found :(';
         }
-        else
-            textarea[i] += '	no definition found :(';
+        else if (langType == "spa")
+        {
+            word = word.toLowerCase();
+            //alert(word);
+            var index = searchStringInArray(word, dictionary_spanish);
+
+            if (index != -1)
+                textarea[i] += '	' + dictionary_spanish[index].replace(word, "");
+            else
+                textarea[i] += '	no translation found :(';
+        }
 
         //alert(entry);
     }
