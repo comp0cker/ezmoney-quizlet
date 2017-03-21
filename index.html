@@ -13,26 +13,33 @@
 </head>
 
 <div class = "container">
-<h3>Enter each word on its own line, then create a new Quizlet set, click import, and paste the generated text.</h3>
-<h4>Don't misspell anything :P</h4>
+    <div class = "title">
 
-<input type="radio" name="lang" value="eng" id="english" checked = "checked">
-<label for="english">English</label>
-<input type="radio" name="lang" value="spa" id="spanish">
-<label for="spanish">English to Spanish</label>
-<br>
+        <h1>ezmoney quizlet</h1>
+        <h5 class = "subtitle">Enter each word on its own line, then create a new Quizlet set, click import, and paste the generated text.
+            Don't misspell anything :P</h5>
+    </div>
 
-<input type="radio" name="def" value="first" id = "firstDef" checked = "checked">
-<label for="firstDef">Pick first definition</label>
-<input type="radio" name="def" value="all" id = "allDef">
-<label for="allDef">List all definitions</label>
+    <input type="radio" name="lang" value="eng" id="english" checked = "checked">
+    <label for="english">English</label>
+    <input type="radio" name="lang" value="spa" id="spanish">
+    <label for="spanish">English to Spanish</label>
+    <br>
 
-<div class = "flexcontainer">
-    <textarea id="uh" placeholder="Enter here!" class="materialize-textarea"></textarea>
-    <div class="flow-text" id = "output"></div>
-</div>
-<button class="waves-effect waves-light btn" onclick="CallMethod()">Generate!</button>
-<button class="waves-effect waves-light btn" class="button" id="copy-button" data-clipboard-target="#output">Copy</button>
+    <input type="radio" name="def" value="first" id = "firstDef" checked = "checked">
+    <label for="firstDef">Pick first definition</label>
+    <input type="radio" name="def" value="all" id = "allDef">
+    <label for="allDef">List all definitions</label>
+
+    <div class = "flexcontainer">
+        <div class="left">
+            <textarea id="uh" placeholder="Enter here!" class="materialize-textarea"></textarea>
+            <button class="waves-effect waves-light btn" onclick="CallMethod()">Generate!</button>
+            <button class="waves-effect waves-light btn" class="button" id="copy-button" data-clipboard-target="#output">Copy</button>
+        </div>
+
+        <div class="flow-text" id = "output"></div>
+    </div>
 </div>
 </body>
 </html>

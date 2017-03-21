@@ -91,5 +91,6 @@ function CallMethod() {
         $("#output").append("<div>" + textarea[j] + "</div>");
         }
 
+    Materialize.toast('Set generated!', 4000) // 4000 is the duration of the toast
     //alert("Set generated!");
 }
